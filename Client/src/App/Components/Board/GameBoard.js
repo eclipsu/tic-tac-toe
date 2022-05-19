@@ -1,23 +1,52 @@
 import React, { useState } from "react";
-import Cell from "./Cell";
-import "../../Styles/Board/Board.css";
+import useSound from "use-sound";
+
+// Game lib
 import { checkWinner } from "../../Game/checkWin";
 import { checkStalemate } from "../../Game/checkStalemate";
+import { resetBoard } from "../../Game/resetBoard";
+
+// Styles
+import "../../Styles/Board/Board.css";
+import "../../Styles/Board/TopSection.css";
+
+// functional compotnents
+import TopSection from "../UI/TopSection";
+import Bottom from "../UI/Bottom";
+import Footer from "./Footer";
+
+// audio files
+import write from "../../Utils/Sounds/draw.wav";
+// import loose from "../../Utils/Sounds/loose.wav";
+import win from "../../Utils/Sounds/win.wav";
 
 const GameBoard = (props) => {
-  // eslint-disable-next-line
   const [gameBoard, setGameBoard] = useState(Array(9).fill(null));
-  // eslint-disable-next-line
   const [xIsNext, setXisNext] = useState(true);
-  // eslint-disable-next-line
-  const winner = checkWinner(gameBoard);
-  // eslint-disable-next-line
-  const [errMsg, setErrMsg] = useState("");
+  const [activeState, changeActiveState] = useState({ activeObj: { id: 1 }, objects: [{ id: 1 }, { id: 2 }] });
+
+  // sfxs
+  const [writeSfx] = useSound(write);
+  const [winSfx] = useSound(win);
+  let winner = checkWinner(gameBoard, winSfx);
+
+  const reset = () => {
+    resetBoard(setGameBoard, setXisNext, winner);
+  };
+
+  const toggleActive = (i) => {
+    changeActiveState({ ...activeState, activeObj: activeState.objects[i] });
+  };
+  const toggleActiveStyle = (i) => {
+    if (activeState.objects[i].id === activeState.activeObj.id) return "active";
+    return "inactive";
+  };
 
   const onClick = (i) => {
     const boardCopy = [...gameBoard];
 
     if (winner || boardCopy[i]) return;
+    writeSfx();
     boardCopy[i] = xIsNext ? "X" : "O";
     setGameBoard(boardCopy);
     setXisNext(!xIsNext);
@@ -25,13 +54,11 @@ const GameBoard = (props) => {
 
   return (
     <div className="game-board-container">
-      <div className="board">
-        {gameBoard.map((cell, i) => {
-          return <Cell index={i} key={i} value={cell} onClick={() => onClick(i)} />;
-        })}
-      </div>
-      {!checkStalemate(gameBoard, winner) ? <p className="winner">{winner ? `Winner : ${winner}` : `NextPlayer: ${xIsNext ? "X" : "O"}`}</p> : ""}
+      <TopSection toggleActiveStyle={toggleActiveStyle} toggleActive={toggleActive} reset={reset} />
+      {!checkStalemate(gameBoard, winner) ? <p className="winner">{winner ? `${winner} won 🥳` : `Waiting for: ${xIsNext ? "X" : "O"}`}</p> : ""}
       {checkStalemate(gameBoard, winner) ? <p className="winner">No one won</p> : ""}
+      <Bottom checkStalemate={checkStalemate} gameBoard={gameBoard} xIsNext={xIsNext} onClick={onClick} />
+      <Footer />
     </div>
   );
 };
