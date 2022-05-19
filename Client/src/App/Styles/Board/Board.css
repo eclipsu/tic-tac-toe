@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,200;8..144,300&display=swap");
+
+.game-board-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.square {
+  background: rgb(255, 255, 255);
+  font-size: 30px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.board {
+  width: 250px;
+  height: 250px;
+  margin-top: 50px;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  border: none;
+}
+
+.winner {
+  margin: 20px 50px;
+  font-size: 1.3em;
+}

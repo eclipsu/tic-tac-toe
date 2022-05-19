@@ -1,0 +1,46 @@
+/* Cell borders */
+
+:root {
+  --border-color: #000000;
+  --border-width: 2.6px;
+}
+
+.square0 {
+  border-top: none;
+  border-right: var(--border-width) solid var(--border-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+  border-left: none;
+}
+
+.square1 {
+  border-right: var(--border-width) solid var(--border-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.square2 {
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.square3 {
+  border-right: var(--border-width) solid var(--border-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.square4 {
+  border-right: var(--border-width) solid var(--border-color);
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.square5 {
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+.square6 {
+  border-top: none;
+  border-right: var(--border-width) solid var(--border-color);
+  border-left: none;
+}
+
+.square7 {
+  border-right: var(--border-width) solid var(--border-color);
+}
