@@ -1,23 +1,24 @@
-const players = [];
+const rooms = [];
 
-const playerJoin = (id, room) => {
-  const player = { id, room };
-  players.push(player);
-  return player;
+const playerJoin = (roomID, board) => {
+  const room = { roomID: roomID, board: board };
+  rooms.push(room);
+  return room;
 };
 
-const getCurrentPlayer = (id) => {
-  return players.find((user) => user.id === id);
+const getCurrentPlayer = (roomID) => {
+  return rooms.find((user) => user.roomID === roomID);
 };
 
-const playerLeave = (id) => {
-  const index = players.findIndex((player) => player.id === id);
+const changeBoard = (roomID, newBoard) => {
+  const roomIndex = rooms.findIndex((room) => (room.roomID = roomID));
+  return (rooms[roomIndex].board = newBoard);
+};
+
+const playerLeave = (roomID) => {
+  const index = rooms.findIndex((room) => room.roomID === roomID);
   if (index === -1) return;
-  return player.splice(index, 1)[0];
+  return room.splice(index, 1)[0];
 };
 
-const getRoomPlayers = (room) => {
-  return players.filter((playr) => player.room === room);
-};
-
-module.exports = { playerJoin, getCurrentPlayer, playerLeave, getRoomPlayers };
+module.exports = { playerJoin, getCurrentPlayer, playerLeave };

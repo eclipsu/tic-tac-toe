@@ -1,4 +1,4 @@
-const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require("../utils/socketUsers");
+const { playerJoin, getCurrentPlayer, playerLeave, getRoomPlayers } = require("../utils/socketUsers");
 
 exports = module.exports = function (io) {
   io.on("connection", (socket) => {
@@ -8,25 +8,14 @@ exports = module.exports = function (io) {
     // });
 
     socket.on("joinGameRoom", (data) => {
-      if (data === null) return;
+      console.log(data.id);
+      playerJoin(data.id, data.board);
       socket.join(data);
+      io.emit("join", "hello");
     });
 
-    socket.on("PrivateShopRoomServer", (data) => {
-      const user = decode(data.token);
-      if (user === null) return;
-      const nepali_date = getNepaliDate();
-
-      const newTransaction = {
-        title: data.transaction.title,
-        amount: data.transaction.amount,
-        type: data.transaction.type,
-        year: nepali_date.year,
-        month: nepali_date.month,
-        date: nepali_date.day,
-      };
-
-      socket.broadcast.to(user.shop_id).emit("PrivateShopRoom", newTransaction);
+    socket.on("move", (data) => {
+      socket.broadcast.to(data.id).emit("sex");
     });
 
     socket.on("disconnect", () => {
