@@ -1,8 +1,8 @@
 import React from "react";
 import GameBoard from "../Components/Board/GameBoard";
 
-const Home = () => {
+const Game = () => {
   return <GameBoard />;
 };
 
-export default Home;
+export default Game;

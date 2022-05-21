@@ -8,9 +8,8 @@ exports = module.exports = function (io) {
     // });
 
     socket.on("joinGameRoom", (data) => {
-      console.log(data);
-      // if (user === null) return;
-      //   socket.join(user.shop_id);
+      if (data === null) return;
+      socket.join(data);
     });
 
     socket.on("PrivateShopRoomServer", (data) => {

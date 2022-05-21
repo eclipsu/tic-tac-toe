@@ -45,6 +45,14 @@
   cursor: default;
 }
 
+.top-section .buttons .vs_p:hover span {
+  display: none;
+}
+
+.top-section .buttons .vs_p:hover:before {
+  content: "Copy to 📋";
+}
+
 .top-section .buttons button {
   font-size: 1em;
   width: 150px;

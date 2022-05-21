@@ -9,10 +9,11 @@ const TopSection = (props) => {
           value="2p"
           className={`${props.toggleActiveStyle(0)} vs_p`}
           onClick={() => {
+            props.generateLink();
             props.toggleActive(0);
           }}
         >
-          2 Players
+          <span>2 Players</span>
         </button>
         <button
           value="1p"
@@ -21,7 +22,7 @@ const TopSection = (props) => {
             props.toggleActive(1);
           }}
         >
-          Versus Computer
+          Vs Computer
         </button>
       </div>
       <button className="new-game" onClick={props.reset}>
