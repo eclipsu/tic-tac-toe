@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSound from "use-sound";
+
+// communication with backend
+import axios from "axios";
+import EndPoint from "../../Utils/Api"; // api endpoint
+import io from "socket.io-client";
 
 // Game lib
 import { checkWinner } from "../../Game/checkWin";
@@ -24,7 +29,7 @@ const GameBoard = (props) => {
   const [gameBoard, setGameBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXisNext] = useState(true);
   const [activeState, changeActiveState] = useState({ activeObj: { id: 1 }, objects: [{ id: 1 }, { id: 2 }] });
-
+  const [uuid, setUUID] = useState(null);
   // sfxs
   const [writeSfx] = useSound(write);
   const [winSfx] = useSound(win);
@@ -44,13 +49,25 @@ const GameBoard = (props) => {
 
   const onClick = (i) => {
     const boardCopy = [...gameBoard];
-
     if (winner || boardCopy[i]) return;
     writeSfx();
     boardCopy[i] = xIsNext ? "X" : "O";
     setGameBoard(boardCopy);
     setXisNext(!xIsNext);
   };
+
+  // Get id for player
+  useEffect(() => {
+    axios.get(`${EndPoint}/api/room/createid`).then((res) => {
+      setUUID(res.data.uuid);
+    });
+  }, []);
+
+  // Connect with room (test)
+  const socket = io(EndPoint);
+  useEffect(() => {
+    socket.emit("joinGameRoom", uuid);
+  }, [uuid]);
 
   return (
     <div className="game-board-container">
