@@ -16,5 +16,3 @@ export function checkWinner(cell) {
   }
   return null;
 }
-
-module.exports = { checkWinner };
