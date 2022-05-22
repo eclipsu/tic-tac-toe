@@ -1,5 +1,5 @@
 export function resetBoard(setBoard, setXisNext, winner) {
-  setBoard(Array(9).fill(null));
+  setBoard(Array.from(Array(9).keys()));
   setXisNext(true);
   winner = "";
 }

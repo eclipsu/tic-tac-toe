@@ -1,4 +1,5 @@
-export function checkWinner(cell, winSfx) {
+// export
+function checkWinner(cell) {
   const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -12,10 +13,9 @@ export function checkWinner(cell, winSfx) {
 
   for (let i = 0; i < winConditions.length; i++) {
     const [a, b, c] = winConditions[i];
-    if (cell[a] && cell[a] === cell[b] && cell[a] === cell[c]) {
-      winSfx();
-      return cell[a];
-    }
+    if (cell[a] && cell[a] === cell[b] && cell[a] === cell[c]) return cell[a];
   }
   return null;
 }
+
+module.exports = { checkWinner };

@@ -4,7 +4,7 @@ import "../../Styles/Board/Cell.css";
 const Square = (props) => {
   return (
     <button className={`square${props.index} square`} onClick={props.onClick}>
-      {props.value}
+      {typeof props.value === "number" ? "" : props.value}
     </button>
   );
 };
