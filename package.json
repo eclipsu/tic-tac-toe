@@ -4,13 +4,13 @@
   "description": "",
   "main": "aalucross.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Server/index.js",
+    "heroku-postbuild": "cd Client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eclipsu/tic-tac-toe.git",
-    "start": "node index.js",
-    "heroku-postbuild": "cd Client && npm install --only=dev && npm install && npm run build"
+    "url": "git+https://github.com/Eclipsu/tic-tac-toe.git"
   },
   "author": "",
   "license": "ISC",
