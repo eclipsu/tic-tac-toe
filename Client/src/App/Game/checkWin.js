@@ -1,5 +1,4 @@
-// export
-function checkWinner(cell) {
+export function checkWinner(cell) {
   const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
