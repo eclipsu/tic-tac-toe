@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Eclipsu/tic-tac-toe/issues"
   },
-  "homepage": "https://github.com/Eclipsu/tic-tac-toe#readme"
+  "homepage": "https://github.com/Eclipsu/tic-tac-toe#readme",
+  "engines": {
+    "node": "v14.17.0"
+  }
 }
