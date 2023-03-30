@@ -10,11 +10,13 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-RUN npm run build
 # Copy the rest of the application files to the container's working directory
 COPY . .
 
+# Build the client application
+RUN cd /app/Client && npm run build
 
+# Expose port 8000
 EXPOSE 8000
 
 # Start the application
