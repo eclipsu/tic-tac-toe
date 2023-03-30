@@ -13,8 +13,6 @@ RUN npm install
 # Copy the rest of the application files to the container's working directory
 COPY . .
 
-# Add script to build React app
-RUN npm run build
 
 EXPOSE 8000
 
