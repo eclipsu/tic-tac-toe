@@ -13,7 +13,9 @@ RUN npm install
 # Copy the rest of the application files to the container's working directory
 COPY . .
 
-# Expose port 8000
+# Add script to build React app
+RUN npm run build
+
 EXPOSE 8000
 
 # Start the application
