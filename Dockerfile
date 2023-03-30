@@ -16,12 +16,6 @@ RUN npm install -g react-scripts
 # Copy the rest of the application files to the container's working directory
 COPY . .
 
-<<<<<<< HEAD
-=======
-# Build the React app
-RUN npm run build
->>>>>>> 624d882c090ec089d7a73eddb899e3f166b91ea8
-
 # Expose port 8000
 EXPOSE 8000
 
