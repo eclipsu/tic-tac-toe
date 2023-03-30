@@ -10,11 +10,14 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+# Install react-scripts
+RUN npm install -g react-scripts
+
 # Copy the rest of the application files to the container's working directory
 COPY . .
 
-# Build the client application
-RUN cd /app/Client && npm run build
+# Build the React app
+RUN npm run build
 
 # Expose port 8000
 EXPOSE 8000
